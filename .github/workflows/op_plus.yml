@@ -55,10 +55,10 @@ jobs:
         git clone https://github.com/coolsnowwolf/lede
 
     - name: Update feeds
-      run: cd openwrt && ./scripts/feeds update -a
+      run: ./scripts/feeds update -a
 
     - name: Install feeds
-      run: cd openwrt && ./scripts/feeds install -a
+      run: ./scripts/feeds install -a
 
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
