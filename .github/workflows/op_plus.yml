@@ -51,7 +51,7 @@ jobs:
     - name: Clone source code
       working-directory: openwrt
       run: |
-        git clone https://github.com/openwrt/openwrt -b 21.02 openwrt
+        git clone https://github.com/openwrt/openwrt openwrt
         git clone https://github.com/coolsnowwolf/lede
 
     - name: Update feeds
