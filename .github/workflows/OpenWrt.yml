@@ -37,8 +37,11 @@ jobs:
     - name: Clone source code
       working-directory: openwrt
       run: |
-        git clone -b v21.02.0 https://github.com/openwrt openwrt
+        git clone https://git.openwrt.org/openwrt/openwrt.git openwrt
         cd openwrt
+        git pull
+        git checkout v21.02.0
+        
         cat >> feeds.conf.default <<EOF
         src-git helloword https://github.com/fw876/helloworld
         src-git passwall https://github.com/xiaorouji/openwrt-passwall
