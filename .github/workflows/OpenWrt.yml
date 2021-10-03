@@ -30,6 +30,8 @@ jobs:
     - name: Clone source code
       working-directory: openwrt
       run: |
+        mkdir openwrt
+        chmod 777 openwrt
         git clone https://git.openwrt.org/openwrt/openwrt.git openwrt
         cd openwrt
         git pull
