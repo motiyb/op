@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: op_plus
+name: OpenWrt
 
 on:
   repository_dispatch:
@@ -17,29 +17,15 @@ on:
       ssh:
         description: 'SSH connection to Actions'
         required: false
-        default: 'true'
-
-env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
-  FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: .config
-  DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-part2.sh
-  UPLOAD_BIN_DIR: false
-  UPLOAD_FIRMWARE: true
-  UPLOAD_COWTRANSFER: false
-  UPLOAD_WETRANSFER: false
-  UPLOAD_RELEASE: false
-  TZ: Asia/Shanghai
+        default: 'false'
 
 jobs:
   build:
     runs-on: ubuntu-20.04
 
     steps:
-#    - name: Checkout
-#      uses: actions/checkout@main
+    - name: Checkout
+      uses: actions/checkout@main
 
     - name: Initialization environment
       run: |
@@ -48,18 +34,15 @@ jobs:
         mkdir openwrt
         chmod 777 openwrt
 
-    - name: SSH connection to Actions - 1
-      uses: P3TERX/ssh2actions@v1.0.0
-      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-
     - name: Clone source code
       working-directory: openwrt
       run: |
-        git clone https://github.com/openwrt/openwrt openwrt
-        git clone https://github.com/coolsnowwolf/lede
+        git clone -b v21.02.0 https://github.com/openwrt openwrt
+        cd openwrt
+        cat >> feeds.conf.default <<EOF
+        src-git helloword https://github.com/fw876/helloworld
+        src-git passwall https://github.com/xiaorouji/openwrt-passwall
+        EOF
 
     - name: Update feeds
       run: ./scripts/feeds update -a
@@ -67,12 +50,8 @@ jobs:
     - name: Install feeds
       run: ./scripts/feeds install -a
 
-    - name: SSH connection to Actions - 2
-      uses: P3TERX/ssh2actions@v1.0.0
-      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+    - name: Copy .config
+      run: cp $GITHUB_WORKSPACE/.config $GITHUB_WORKSPACE/openwrt
 
     - name: Download package
       id: package
