@@ -37,8 +37,8 @@ jobs:
     - name: Clone source code, feed/config update
       working-directory: openwrt
       run: |
-        mkdir openwrt
-        chmod 777 openwrt
+        sudo mkdir openwrt
+        sudo chmod 777 openwrt
         git clone https://git.openwrt.org/openwrt/openwrt.git openwrt
         cd openwrt
         git pull
