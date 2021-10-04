@@ -41,6 +41,7 @@ jobs:
         src-git helloword https://github.com/fw876/helloworld
         src-git passwall https://github.com/xiaorouji/openwrt-passwall
         EOF
+        make defconfig
         cp $GITHUB_WORKSPACE/.config $GITHUB_WORKSPACE/openwrt
 
     - name: Initialization environment
