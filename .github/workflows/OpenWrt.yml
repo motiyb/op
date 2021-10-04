@@ -34,7 +34,7 @@ jobs:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
         
-    - name: Clone source code
+    - name: Clone source code, feed/config update
       working-directory: openwrt
       run: |
         git clone https://git.openwrt.org/openwrt/openwrt.git openwrt
@@ -46,9 +46,7 @@ jobs:
         src-git helloword https://github.com/fw876/helloworld
         src-git passwall https://github.com/xiaorouji/openwrt-passwall
         EOF
-
-    - name: Copy .config
-      run: cp $GITHUB_WORKSPACE/.config $GITHUB_WORKSPACE/openwrt
+        cp $GITHUB_WORKSPACE/.config $GITHUB_WORKSPACE/openwrt
 
     - name: Initialization environment
       run: |
@@ -56,11 +54,17 @@ jobs:
         sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint
 
     - name: Update feeds
-      run: ./scripts/feeds update -a
+      working-directory: openwrt
+      run: |
+        cd openwrt
+        ./scripts/feeds update -a
 
     - name: Install feeds
-      run: ./scripts/feeds install -a
-
+      working-directory: openwrt
+      run: |
+        cd openwrt
+        ./scripts/feeds install -a
+      
     - name: Download package
       id: package
       run: |
