@@ -37,7 +37,7 @@ jobs:
     - name: Clone source code, feed/config update
       run: |
         sudo mkdir -p openwrt
-        sudo chown $USER:$GROUPS 
+        sudo chown $USER:$GROUPS openwrt
         sudo chmod 777 openwrt
         git clone https://git.openwrt.org/openwrt/openwrt.git openwrt
         cd openwrt
