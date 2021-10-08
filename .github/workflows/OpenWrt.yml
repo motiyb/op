@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: OpenWrt
+name: OpenWrt_K3
 
 on:
   repository_dispatch:
@@ -42,7 +42,7 @@ jobs:
         src-git passwall https://github.com/xiaorouji/openwrt-passwall
         EOF
         make defconfig
-        cp $GITHUB_WORKSPACE/.config $GITHUB_WORKSPACE/openwrt
+        cp $GITHUB_WORKSPACE/.config.k3 $GITHUB_WORKSPACE/openwrt/.config
 
     - name: Initialization environment
       run: |
@@ -63,9 +63,10 @@ jobs:
       id: package
       run: |
         cd openwrt
-        make download -j8
+        make download
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+        cp /usr/bin/upx $GITHUB_WORKSPACE/openwrt/staging_dir/host/bin/
 
     - name: Compile the firmware
       id: compile
