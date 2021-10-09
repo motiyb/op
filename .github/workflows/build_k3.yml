@@ -67,6 +67,7 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
         cp /usr/bin/upx $GITHUB_WORKSPACE/openwrt/staging_dir/host/bin/
+        cp $GITHUB_WORKSPACE/Makefile.k3 $GITHUB_WORKSPACE/openwrt/target/linux/bcm53xx/image/Makefile
 
     - name: Compile the firmware
       id: compile
