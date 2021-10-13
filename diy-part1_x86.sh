@@ -20,4 +20,4 @@ cat >> feeds.conf.default <<EOF
 src-git helloword https://github.com/fw876/helloworld
 src-git passwall https://github.com/xiaorouji/openwrt-passwall
 EOF
-cp $GITHUB_WORKSPACE/.diff.config.x86 $GITHUB_WORKSPACE/openwrt/.config
+cp $GITHUB_WORKSPACE/diff.config.x86 $GITHUB_WORKSPACE/openwrt/.config
