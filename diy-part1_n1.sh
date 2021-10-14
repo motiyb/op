@@ -21,3 +21,4 @@ src-git helloword https://github.com/fw876/helloworld
 src-git passwall https://github.com/xiaorouji/openwrt-passwall
 EOF
 make defconfig
+cp $GITHUB_WORKSPACE/diff.config.n1 $GITHUB_WORKSPACE/openwrt/.config
