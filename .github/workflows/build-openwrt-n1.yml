@@ -108,7 +108,7 @@ jobs:
         cd openwrt
         mkdir n1
         git clone https://github.com/tuanqing/mknop n1
-        cp bin/target/armvirt/64/*tar.gz /n1/mknop/openwrt
+        cp bin/targets/armvirt/64/*tar.gz /n1/mknop/openwrt
         cd n1/mknop
         echo -e "\n\n" | sudo ./n1/mknop/gen_openwrt
         cp ./n1/mknop/out/*.* ./bin/target/armvirt/64/
