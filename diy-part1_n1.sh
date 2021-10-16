@@ -19,5 +19,5 @@
 cat >> feeds.conf.default <<EOF
 src-git helloword https://github.com/fw876/helloworld
 src-git passwall https://github.com/xiaorouji/openwrt-passwall
-src-git mknop https://github.com/tuanqing/mknop
+# src-git mknop https://github.com/tuanqing/mknop
 EOF
