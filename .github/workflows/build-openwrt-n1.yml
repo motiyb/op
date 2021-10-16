@@ -24,7 +24,7 @@ env:
   REPO_BRANCH: v21.02.0
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config.n1
-  DIY_P1_SH: diy-part1_n1.sh
+  DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
@@ -121,6 +121,16 @@ jobs:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
+    - name: Build n1 image
+      run: |
+        cd openwrt
+        mkdir n1
+        git clone https://github.com/tuanqing/mknop n1
+        cp bin/*.* /n1/mknop/openwrt
+        cd n1/mknop
+        echo -e "\n\n" | sudo ./n1/mknop/gen_openwrt
+        cp ./n1/mknop/out/*.* ./bin/
+                
     - name: Organize files
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
