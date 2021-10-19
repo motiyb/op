@@ -61,6 +61,8 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        # Clone one click script for n1 firmware
+        git clone https://github.com/tuanqing/mknop n1
 
     - name: Load custom feeds
       run: |
@@ -105,18 +107,9 @@ jobs:
 
     - name: Build n1 image
       run: |
-        cd openwrt
-        mkdir n1
-        cd n1
-        mkdir openwrt
-        cd .. 
-        cd ..
-        git clone https://github.com/tuanqing/mknop n1
-        cd bin/targets/*/*
-        cp *tar.gz $GITHUB_WORKSPACE/openwrt/n1/mknop/openwrt
-        cd $GITHUB_WORKSPACE/openwrt/
-        echo -e "\n\n" | sudo ./n1/mknop/gen_openwrt
-        cd bin/target/*/*
+        cd $GITHUB_WORKSPACE/openwrt/bin/targets/*/*
+        cp *tar.gz $GITHUB_WORKSPACE/n1/mknop/openwrt
+        echo -e "\n\n" | sudo $GITHUB_WORKSPACE/n1/mknop/gen_openwrt
         cp $GITHUB_WORKSPACE/openwrt/n1/mknop/out/*.*
 
     - name: Check space usage
