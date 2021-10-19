@@ -106,10 +106,12 @@ jobs:
     - name: Build n1 image
       run: |
         cd openwrt
-        mkdir n1/openwrt
+        mkdir n1
+        cd n1
+        mkdir openwrt
+        cd ..
         git clone https://github.com/tuanqing/mknop n1
-        cp bin/targets/armvirt/64/*tar.gz /n1/mknop/openwrt
-        cd n1/mknop
+        cp bin/targets/armvirt/64/*tar.gz n1/mknop/openwrt
         echo -e "\n\n" | sudo ./n1/mknop/gen_openwrt
         cp ./n1/mknop/out/*.* ./bin/target/armvirt/64/
 
