@@ -112,9 +112,12 @@ jobs:
         cd .. 
         cd ..
         git clone https://github.com/tuanqing/mknop n1
-        cp bin/targets/armvirt/64/*tar.gz n1/mknop/openwrt
+        cd bin/targets/*/*
+        cp *tar.gz $GITHUB_WORKSPACE/openwrt/n1/mknop/openwrt
+        cd $GITHUB_WORKSPACE/openwrt/
         echo -e "\n\n" | sudo ./n1/mknop/gen_openwrt
-        cp ./n1/mknop/out/*.* ./bin/target/armvirt/64/
+        cd bin/target/*/*
+        cp $GITHUB_WORKSPACE/openwrt/n1/mknop/out/*.*
 
     - name: Check space usage
       if: (!cancelled())
