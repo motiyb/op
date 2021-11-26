@@ -22,6 +22,7 @@ on:
 env:
   REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
   REPO_BRANCH: v21.02.0
+  DEVICE: x86
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config.x86
   DIY_P1_SH: diy-part1.sh
@@ -158,7 +159,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+        echo "::set-output name=release_tag::$("OpenWrt_"+ env.REPO_BRANCH + "_" + env.DEVICE + "_" + date +"%Y.%m.%d-%H%M")"
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
