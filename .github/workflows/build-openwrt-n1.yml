@@ -21,7 +21,7 @@ on:
 
 env:
   REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
-  REPO_BRANCH: v21.02.0
+  REPO_BRANCH: v21.02.1
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config.n1
   DIY_P1_SH: diy-part1.sh
@@ -113,12 +113,11 @@ jobs:
 
     - name: Build n1 image
       run: |
-        sudo mkdir /opt/kernel
-        git clone https://github.com/unifreq/openwrt_packit
-        cp $GITHUB_WORKSPACE/openwrt/bin/targets/*/*/*.tar.gz /opt/openwrt_packit
-        cd /opt/openwrt_packit
-        sudo ./mk_s905d_n1.sh
-        cp /opt/openwrt_packit/output/*.* $GITHUB_WORKSPACE/openwrt/bin/targets/*/*
+        git clone https://github.com/tuanqing/mknop n1
+        cp $GITHUB_WORKSPACE/openwrt/bin/targets/*/*/*.tar.gz $GITHUB_WORKSPACE/n1/openwrt
+        cd $GITHUB_WORKSPACE/n1
+        echo -e "\n\n" | sudo $GITHUB_WORKSPACE/n1/gen_openwrt
+        cp $GITHUB_WORKSPACE/n1/out/*/*.* $GITHUB_WORKSPACE/openwrt/bin/targets/*/*
         
     - name: Check space usage
       if: (!cancelled())
