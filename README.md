@@ -19,7 +19,7 @@ A template for building OpenWrt with GitHub Actions
 
 ## Credits
 
-感谢OpenWrt和Github还有一众大佬在网上的无私奉献与分享，没有他们就没有这个固件。
+感谢OpenWrt和Github还有一众大佬在网上的无私奉献与分享，没有他们就没有这个固件，这也是我分享的动力。
 
 - [Microsoft Azure](https://azure.microsoft.com)
 - [GitHub Actions](https://github.com/features/actions)
