@@ -114,10 +114,10 @@ jobs:
     - name: Build n1 image
       run: |
         sudo mkdir /opt/kernel
-        sudo cp $GITHUB_WORKSPACE/boot.***** /opt/kernel
+        sudo cp $GITHUB_WORKSPACE/68/*.* /opt/kernel
         cd /opt
         sudo git clone https://github.com/unifreq/openwrt_packit
-        sudo cp $GITHUB_WORKSPACE/openwrt/bin/targets/*/*/*.tar.gz /opt/openwrt_packit/
+        sudo cp $GITHUB_WORKSPACE/openwrt/bin/targets/*/*/openwrt-armvirt-64-default-rootfs.tar.gz /opt/openwrt_packit/
         cd /opt/openwrt_packit
         echo -e "\n\n" sudo ./mk_s905d_n1.sh
         cp /opt/openwrt_packit/output/*.* $GITHUB_WORKSPACE/openwrt/bin/targets/*/*
