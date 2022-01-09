@@ -9,7 +9,6 @@
 #
 
 name: Build OpenWrt - n1
-
 on:
   repository_dispatch:
   workflow_dispatch:
