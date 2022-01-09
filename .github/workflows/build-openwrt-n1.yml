@@ -123,12 +123,12 @@ jobs:
     #    cp /opt/openwrt_packit/output/*.* $GITHUB_WORKSPACE/openwrt/bin/targets/*/*
     
 
-- name: Package Armvirt as OpenWrt
-  uses: unifreq/openwrt_packit@master
-  env:
-    OPENWRT_ARMVIRT: openwrt/bin/targets/*/*/*.tar.gz
-    PACKAGE_SOC: s905d_vplus
-    KERNEL_VERSION_NAME: 5.14.12_5.4.153
+    - name: Package Armvirt as OpenWrt
+      uses: unifreq/openwrt_packit@master
+      env:
+        OPENWRT_ARMVIRT: openwrt/bin/targets/*/*/*.tar.gz
+        PACKAGE_SOC: s905d_vplus
+        KERNEL_VERSION_NAME: 5.14.12_5.4.153
 
     
     - name: Check space usage
