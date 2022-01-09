@@ -133,7 +133,9 @@ jobs:
     
     - name: Check space usage
       if: (!cancelled())
-      run: df -hT
+      run: |
+        df -hT
+        cp /opt/openwrt_packit/output/*.* $GITHUB_WORKSPACE/openwrt/bin/targets/*/*/
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
