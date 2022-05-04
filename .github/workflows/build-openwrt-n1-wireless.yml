@@ -54,6 +54,10 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
+        sudo apt-get install upx -y
+        cp /usr/bin/upx $GITHUB_WORKSPACE/openwrt/staging_dir/host/bin/
+        cp /usr/bin/upx-ucl $GITHUB_WORKSPACE/openwrt/staging_dir/host/bin/
+
         
     - name: Clone source code
       working-directory: /workdir
