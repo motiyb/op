@@ -13,12 +13,6 @@
 # Uncomment a feed source
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
-# install upx
-sudo apt-get update
-sudo apt-get install upx -y
-cp /usr/bin/upx $GITHUB_WORKSPACE/openwrt/staging_dir/host/bin/
-cp /usr/bin/upx-ucl $GITHUB_WORKSPACE/openwrt/staging_dir/host/bin/
-
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
