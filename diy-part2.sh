@@ -17,8 +17,3 @@
 sudo apt-get install upx -y
 cp /usr/bin/upx $GITHUB_WORKSPACE/openwrt/staging_dir/host/bin/
 cp /usr/bin/upx-ucl $GITHUB_WORKSPACE/openwrt/staging_dir/host/bin/
-
-#Prepare openclash
-wget https://github.com/vernesong/OpenClash/archive/master.zip
-unzip master.zip
-cp -r OpenClash-master/luci-app-openclash $GITHUB_WORKSPACE/openwrt/package
