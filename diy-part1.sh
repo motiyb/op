@@ -13,6 +13,11 @@
 # Uncomment a feed source
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
+#Prepare openclash
+wget https://github.com/vernesong/OpenClash/archive/master.zip
+unzip master.zip
+cp -r OpenClash-master/luci-app-openclash $GITHUB_WORKSPACE/openwrt/package
+
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
