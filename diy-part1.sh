@@ -23,9 +23,9 @@ cp -r OpenClash-master/luci-app-openclash $GITHUB_WORKSPACE/openwrt/package
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 cat >> feeds.conf.default <<EOF
 src-git helloword https://github.com/fw876/helloworld
-src-git passwall https://github.com/xiaorouji/openwrt-passwall
+#src-git passwall https://github.com/xiaorouji/openwrt-passwall
 EOF
 ./scripts/feeds update helloworld
 ./scripts/feeds install -a -f -p helloworld
-./scripts/feeds update passwall
-./scripts/feeds install -a -f -p passwall
+#./scripts/feeds update passwall
+#./scripts/feeds install -a -f -p passwall
