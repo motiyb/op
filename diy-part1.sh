@@ -18,9 +18,9 @@ cp -r OpenClash-master/luci-app-openclash $GITHUB_WORKSPACE/openwrt/package
 
 # Add a feed source
 
-sed -i "/helloworld/d" "feeds.conf.default"
-echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
-echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
+# sed -i "/helloworld/d" "feeds.conf.default"
+# echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
+# echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
 cat >> feeds.conf.default <<EOF
 src-git helloword https://github.com/fw876/helloworld
