@@ -27,11 +27,11 @@ cat >> feeds.conf.default <<EOF
 #src-git passwall https://github.com/xiaorouji/openwrt-passwall
 src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git
 
-src-git helloworld https://github.com/fw876/helloworld.git
+#src-git helloworld https://github.com/fw876/helloworld.git
 EOF
 
-./scripts/feeds update helloworld
-./scripts/feeds install -a -f -p helloworld
+#./scripts/feeds update helloworld
+#./scripts/feeds install -a -f -p helloworld
 
 #./scripts/feeds update passwall
 #./scripts/feeds install -a -f -p passwall
