@@ -12,29 +12,23 @@
 
 
 #Prepare openclash
-#wget https://github.com/vernesong/OpenClash/archive/master.zip
-#unzip master.zip
-#cp -r OpenClash-master/luci-app-openclash $GITHUB_WORKSPACE/openwrt/package
+wget https://github.com/vernesong/OpenClash/archive/master.zip
+unzip master.zip
+cp -r OpenClash-master/luci-app-openclash $GITHUB_WORKSPACE/openwrt/package
 
 # Add a feed source
-
-# sed -i "/helloworld/d" "feeds.conf.default"
-# echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
-# echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
-
 cat >> feeds.conf.default <<EOF
 
+#src-git helloworld https://github.com/fw876/helloworld.git
 #src-git passwall https://github.com/xiaorouji/openwrt-passwall
 src-git PWpackages https://github.com/xiaorouji/openwrt-passwall.git;packages
 src-git passwall2 https://github.com/xiaorouji/openwrt-passwall2.git
-
-#src-git helloworld https://github.com/fw876/helloworld.git
 EOF
 
 #./scripts/feeds update helloworld
 #./scripts/feeds install -a -f -p helloworld
-
 #./scripts/feeds update passwall
 #./scripts/feeds install -a -f -p passwall
+
 ./scripts/feeds update -a
 ./scripts/feeds install -a
