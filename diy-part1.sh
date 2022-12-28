@@ -35,5 +35,5 @@ EOF
 
 #./scripts/feeds update passwall
 #./scripts/feeds install -a -f -p passwall
-./scripts/feeds update passwall2
-./scripts/feeds install -a -f -p passwall2
+./scripts/feeds update -a
+./scripts/feeds install -a
