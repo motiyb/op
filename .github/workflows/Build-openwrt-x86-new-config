@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt - x86 - new config
+name: Build OpenWrt - x86-new-config
 
 on:
   repository_dispatch:
